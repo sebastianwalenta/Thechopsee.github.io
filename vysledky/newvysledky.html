@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../styl.css"/>
+    
+    <link rel="shortcut icon" type="image/png" href="../favicon.png"/>
+    <script src="../galerie/galerie.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Výsledky</title>
+</head>
+<body>
+    <div id="pdfContainer">
+        <h2>Terlická plachta 2023 Výsledky</h2>
+        <h3>NSS</h3>
+        &nbsp;
+    </div>
+    
+    <div class="footer">
+            <div id="Co" class="bottom_lines">
+                <div class="bottom_line_nad">Co? Kdy? Kde?</div>
+                <div class="bottom_line">💡 Setkání plachetnic třídy NSS - A,B,C,RG-650</div>
+                <div class="bottom_line">🕘 29.9.-1.10.2023</div>
+                <div class="bottom_line">🗺 RS Vyhlídka Těrlicko</div>
+            </div>
+            <div id="Registrace" class="bottom_lines">
+                <div class="bottom_line_nad">Registrace</div>
+                <div class="bottom_line">🗈 <a href='propozice.pdf'>Propozice</a></div>
+                <div class="bottom_line">🗊 <a href="registrace.html">Registrační formulář</a></div>
+            </div>
+            <div id="Kontakt" class="bottom_lines">
+                <div class="bottom_line_nad">Kontakt</div>
+                <div class="bottom_line">🖃 <a href = "mailto:sebastian.walent@gmail.com">sebastian.walent@gmail.com</a></div>
+                <div class="bottom_line">🖃 <a href = "mailto:modelari.slezsko@gmail.com">modelari.slezsko@gmail.com</a></div>
+            </div>
+
+        </div>
+        <script>
+            var urlParams = new URLSearchParams(window.location.search);
+            var soubor = urlParams.get('soubor');
+            //soubor =2023
+            if (soubor) {
+                //alert('Otevírám soubor: ' + soubor);
+                
+                
+                var pdfObject = document.createElement('object');
+                pdfObject.setAttribute('data', soubor+"/"+soubor+".pdf");
+                pdfObject.setAttribute('type', 'application/pdf');
+                pdfObject.setAttribute('width', '100%');
+                pdfObject.setAttribute('height', '500px');
+
+                var pdfObject2 = document.createElement('object');
+                pdfObject2.setAttribute('data', soubor+"/"+soubor+"rg.pdf");
+                pdfObject2.setAttribute('type', 'application/pdf');
+                pdfObject2.setAttribute('width', '100%');
+                pdfObject2.setAttribute('height', '500px');
+
+                var pdfObject3 = document.createElement('object');
+                pdfObject3.setAttribute('data', soubor+"/"+soubor+"buchreg.pdf");
+                pdfObject3.setAttribute('type', 'application/pdf');
+                pdfObject3.setAttribute('width', '100%');
+                pdfObject3.setAttribute('height', '500px');
+
+                var pdfnamebr = document.createElement('h3');
+                pdfnamebr.innerHTML="Buchta a Regata"
+
+                var pdfnamerg = document.createElement('h3');
+                pdfnamerg.innerHTML="RG650"
+
+                var linkContainer=document.createElement('div');
+                var linkname = document.createElement('h3');
+                linkname.innerHTML="Stažení kompletních výsledků"
+                linkContainer.appendChild(linkname);
+
+                var linkspacer=document.createElement('div');
+                linkspacer.setAttribute("class","spacer")
+                linkContainer.appendChild(linkspacer);
+                var pdfButton=document.createElement('a');
+                pdfButton.setAttribute("href",soubor+"/"+soubor+"comp.pdf");
+                pdfButton.setAttribute("class","his_nav_button");
+                //<!-- <div class="spacer"><a href='./propozice/propozice.pdf' class="his_nav_button" >Stažení propozic!</a></div></div></div> -->
+                pdfButton.innerHTML="PDF";
+                linkspacer.appendChild(pdfButton);
+
+                var pdfButton2=document.createElement('a');
+                pdfButton2.setAttribute("href",soubor+"/"+soubor+".xlsx");
+                pdfButton2.setAttribute("class","his_nav_button");
+                //<!-- <div class="spacer"><a href='./propozice/propozice.pdf' class="his_nav_button" >Stažení propozic!</a></div></div></div> -->
+                pdfButton2.innerHTML="XLSX";
+                linkspacer.appendChild(pdfButton2);
+
+    
+                var conta=document.getElementById("pdfContainer");
+                conta.appendChild(pdfObject);
+                conta.appendChild(pdfnamerg);
+                conta.appendChild(pdfObject2);
+                conta.appendChild(pdfnamebr);
+                conta.appendChild(pdfObject3)
+                conta.appendChild(linkContainer);
+                var linkspacerr=document.createElement('br');
+                linkspacerr.setAttribute("class","spacer")
+                conta.appendChild(linkspacerr)
+                conta.click();
+            }
+        </script>
+</body>
+</html>
