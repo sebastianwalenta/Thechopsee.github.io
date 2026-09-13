@@ -152,16 +152,16 @@
 						<a
 							href={resolveUrl(data.results.url)}
 							download={`vysledky-${data.year}.xlsx`}
-							class="action-btn link-btn"
+							class="action-btn link-btn results-btn"
 						>
-							Výsledky ↧
+							Výsledky ⬇
 						</a>
 					{:else if data.results.url}
-						<a href={resolveUrl(data.results.url)} class="action-btn link-btn">
-							Výsledky ↧
+						<a href={resolveUrl(data.results.url)} class="action-btn link-btn results-btn">
+							Výsledky ↗
 						</a>
 					{:else}
-						<span class="action-btn disabled">Výsledky nejsou k dispozici</span>
+						<span class="action-btn disabled results-btn">Výsledky nejsou k dispozici</span>
 					{/if}
 				</div>
 
@@ -438,6 +438,18 @@
 		align-items: center;
 		justify-content: center;
 		text-decoration: none;
+	}
+
+	.results-btn {
+		background-color: #45cece;
+		color: #303b4a;
+		font-weight: 600;
+	}
+
+	.results-btn:hover {
+		background-color: #303b4a;
+		color: #45cece;
+		outline: 2px solid #45cece;
 	}
 
 	.action-btn.active {
