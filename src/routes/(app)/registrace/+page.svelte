@@ -49,6 +49,11 @@
 	let submitted = $state(false);
 	let submitting = $state(false);
 	let registrants = $state([...initialRegistrants]);
+	let stats = $state({
+		pocet_ucastniku: 0,
+		pocet_rg: 0,
+		pocet_maket: 0
+	});
 	let countdown = $state(getCountdown());
 
 	const registrationClosed = $derived(countdown.closed);
@@ -76,7 +81,14 @@
 			const response = await fetch('https://dataspracovavac.tode.cz/tableendpoint.php');
 			if (response.ok) {
 				const data = await response.json();
-				registrants = data.zavodnici.map((/** @type {any} */ zavodnik) => ({
+				if (data.statistiky) {
+					stats = {
+						pocet_ucastniku: data.statistiky.pocet_ucastniku ?? 0,
+						pocet_rg: data.statistiky.pocet_rg ?? 0,
+						pocet_maket: data.statistiky.pocet_maket ?? 0
+					};
+				}
+				registrants = (data.zavodnici || []).map((/** @type {any} */ zavodnik) => ({
 					name: zavodnik.cele_jmeno,
 					age: zavodnik.vek,
 					country: zavodnik.stat,
@@ -741,6 +753,24 @@
 				</tbody>
 			</table>
 		</div>
+
+		<div class="table-stats">
+			<h3>Statistiky přihlášených</h3>
+			<div class="stats-grid">
+				<div class="stat-card">
+					<strong>{stats.pocet_ucastniku}</strong>
+					<span>Celkem závodníků</span>
+				</div>
+				<div class="stat-card">
+					<strong>{stats.pocet_maket}</strong>
+					<span>Makety NSS</span>
+				</div>
+				<div class="stat-card">
+					<strong>{stats.pocet_rg}</strong>
+					<span>RG650</span>
+				</div>
+			</div>
+		</div>
 	</section>
 </div>
 
@@ -1123,6 +1153,48 @@
 		overflow-x: auto;
 	}
 
+	.table-stats {
+		margin-top: 24px;
+		padding-top: 20px;
+		border-top: 1px solid rgba(48, 59, 74, 0.12);
+	}
+
+	.table-stats h3 {
+		font-size: 1.1rem;
+		margin-bottom: 14px;
+		color: #303b4a;
+	}
+
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 16px;
+	}
+
+	.stat-card {
+		padding: 16px 14px;
+		border-radius: 18px;
+		background: rgba(48, 59, 74, 0.05);
+		border: 1px solid rgba(48, 59, 74, 0.08);
+		text-align: center;
+	}
+
+	.stat-card strong {
+		display: block;
+		font-size: 1.8rem;
+		line-height: 1.1;
+		color: #303b4a;
+		margin-bottom: 4px;
+	}
+
+	.stat-card span {
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: rgba(48, 59, 74, 0.75);
+		font-weight: 600;
+	}
+
 	table {
 		width: 100%;
 		border-collapse: collapse;
@@ -1156,6 +1228,10 @@
 
 		.countdown-grid {
 			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.stats-grid {
+			grid-template-columns: 1fr;
 		}
 	}
 
