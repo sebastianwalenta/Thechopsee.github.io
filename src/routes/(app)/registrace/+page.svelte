@@ -52,7 +52,8 @@
 	let stats = $state({
 		pocet_ucastniku: 0,
 		pocet_rg: 0,
-		pocet_maket: 0
+		pocet_maket: 0,
+		pocet_footy: 0
 	});
 	let countdown = $state(getCountdown());
 
@@ -85,7 +86,8 @@
 					stats = {
 						pocet_ucastniku: data.statistiky.pocet_ucastniku ?? 0,
 						pocet_rg: data.statistiky.pocet_rg ?? 0,
-						pocet_maket: data.statistiky.pocet_maket ?? 0
+						pocet_maket: data.statistiky.pocet_maket ?? 0,
+						pocet_footy: data.statistiky.pocet_footy ?? 0
 					};
 				}
 				registrants = (data.zavodnici || []).map((/** @type {any} */ zavodnik) => ({
@@ -769,6 +771,10 @@
 					<strong>{stats.pocet_rg}</strong>
 					<span>RG650</span>
 				</div>
+				<div class="stat-card">
+					<strong>{stats.pocet_footy}</strong>
+					<span>Footy</span>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -1167,7 +1173,7 @@
 
 	.stats-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(4, 1fr);
 		gap: 16px;
 	}
 
@@ -1230,6 +1236,12 @@
 			grid-template-columns: repeat(2, 1fr);
 		}
 
+		.stats-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 480px) {
 		.stats-grid {
 			grid-template-columns: 1fr;
 		}
