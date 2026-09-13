@@ -32,6 +32,7 @@ $data = [];
 $pocet_ucastniku = 0;
 $pocet_rg = 0;
 $pocet_maket = 0;
+$pocet_footy = 0;
 
 if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -111,6 +112,10 @@ if ($result && $result->num_rows > 0) {
         $footy = '-';
         if (array_key_exists('footy_plachta', $row) && !empty(trim((string) ($row['footy_plachta'] ?? '')))) {
             $footy = 'Ano';
+            $pocet_footy++;
+        } elseif (array_key_exists('footy', $row) && !empty($row['footy']) && $row['footy'] != '-') {
+            $footy = $row['footy'];
+            $pocet_footy++;
         }
 
         $data[] = [
@@ -142,7 +147,8 @@ echo json_encode([
     'statistiky' => [
         'pocet_ucastniku' => $pocet_ucastniku,
         'pocet_rg' => $pocet_rg,
-        'pocet_maket' => $pocet_maket
+        'pocet_maket' => $pocet_maket,
+        'pocet_footy' => $pocet_footy
     ],
     'zavodnici' => $data
 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
