@@ -150,14 +150,23 @@
 
 		if (currentStep === 0) {
 			addError(!form.firstName.trim(), 'Vyplňte jméno.', bucket);
+			addError(
+				/\s/.test(form.firstName.trim()),
+				'Jméno smí obsahovat pouze jedno slovo.',
+				bucket
+			);
 			addError(!form.lastName.trim(), 'Vyplňte příjmení.', bucket);
+			addError(
+				/\s/.test(form.lastName.trim()),
+				'Příjmení smí obsahovat pouze jedno slovo.',
+				bucket
+			);
 			addError(!form.email.trim(), 'Vyplňte e-mail.', bucket);
 			addError(
 				form.email.trim().length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email),
 				'E-mail nemá platný formát.',
 				bucket
 			);
-			addError(!form.club.trim(), 'Vyplňte klub.', bucket);
 			addError(form.country === 'OTHER' && countryCode.length !== 3, 'ISO státu musí mít 3 znaky.', bucket);
 			addError(form.accommodation && Number(form.accommodationPersons) < 1, 'Počet osob pro ubytování musí být alespoň 1.', bucket);
 		}
@@ -435,12 +444,22 @@
 					<div class="form-grid">
 						<label>
 							<span>Jméno</span>
-							<input bind:value={form.firstName} disabled={registrationClosed} type="text" />
+							<input
+								bind:value={form.firstName}
+								oninput={() => { form.firstName = form.firstName.replace(/\s+/g, ''); }}
+								disabled={registrationClosed}
+								type="text"
+							/>
 						</label>
 
 						<label>
 							<span>Příjmení</span>
-							<input bind:value={form.lastName} disabled={registrationClosed} type="text" />
+							<input
+								bind:value={form.lastName}
+								oninput={() => { form.lastName = form.lastName.replace(/\s+/g, ''); }}
+								disabled={registrationClosed}
+								type="text"
+							/>
 						</label>
 
 						<fieldset class="full-width">
@@ -665,8 +684,8 @@
 								<div><dt>Jméno</dt><dd>{form.firstName} {form.lastName}</dd></div>
 								<div><dt>Věková kategorie</dt><dd>{form.ageGroup}</dd></div>
 								<div><dt>E-mail</dt><dd>{form.email}</dd></div>
-								<div><dt>Klub</dt><dd>{form.club}</dd></div>
-								<div><dt>Licence</dt><dd>{form.license || 'Neuvedeno'}</dd></div>
+								<div><dt>Klub</dt><dd>{form.club.trim() || 'Neuvedeno'}</dd></div>
+								<div><dt>Licence</dt><dd>{form.license.trim() || 'Neuvedeno'}</dd></div>
 								<div><dt>ISO státu</dt><dd>{countryCode || '---'}</dd></div>
 								<div><dt>Ubytování</dt><dd>{form.accommodation ? `${form.accommodationPersons} osob` : 'Ne'}</dd></div>
 							</dl>

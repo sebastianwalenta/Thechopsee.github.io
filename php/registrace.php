@@ -31,8 +31,8 @@ if ($conn->connect_error) {
 $conn->set_charset("utf8mb4");
 
 // SBĚR DAT Z POST
-$jmeno         = $_POST['firstName'] ?? '';
-$prijmeni      = $_POST['lastName'] ?? '';
+$jmeno         = trim($_POST['firstName'] ?? '');
+$prijmeni      = trim($_POST['lastName'] ?? '');
 $vek           = ($_POST['ageGroup'] ?? '') === '17-' ? 'J' : 'S';
 $mail          = $_POST['email'] ?? '';
 $klub          = $_POST['club'] ?? '';
@@ -57,6 +57,13 @@ $rgSailNumber  = $attendsRg ? ($_POST['rgSailNumber'] ?? '') : null;
 // Footy
 $attendsFooty  = ($_POST['attendsFooty'] ?? 'false') === 'true';
 $footySailNumber = $attendsFooty ? ($_POST['footySailNumber'] ?? '') : null;
+
+// Validace jména a příjmení (pouze jedno slovo)
+if (preg_match('/\s/', $jmeno) || preg_match('/\s/', $prijmeni)) {
+    http_response_code(400);
+    echo "Chyba: Jméno a příjmení smí obsahovat pouze jedno slovo.";
+    exit;
+}
 
 // Validace státu
 if (strlen($stat) !== 3) {
