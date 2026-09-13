@@ -65,6 +65,13 @@ if (strlen($stat) !== 3) {
     exit;
 }
 
+// Validace kategorií
+if (!$attendsNss && !$attendsRg && !$attendsFooty) {
+    http_response_code(400);
+    echo "Chyba: Závodník musí mít vybranou alespoň jednu kategorii (NSS, RG650 nebo Footy).";
+    exit;
+}
+
 // Uložení do jedné tabulky
 $stmt = $conn->prepare("
     INSERT INTO Zavodnici

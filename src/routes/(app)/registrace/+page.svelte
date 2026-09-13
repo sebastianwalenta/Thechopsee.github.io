@@ -213,14 +213,17 @@
 			);
 		}
 
-		if (currentStep === 3 && form.attendsFooty && form.footySailNumber) {
-			addError(
-				!Number.isInteger(Number(form.footySailNumber)) ||
-					Number(form.footySailNumber) < 1 ||
-					Number(form.footySailNumber) > 999,
-				'Footy číslo na plachtě musí být celé číslo 1 až 999.',
-				bucket
-			);
+		if (currentStep === 3) {
+			if (form.attendsFooty && form.footySailNumber) {
+				addError(
+					!Number.isInteger(Number(form.footySailNumber)) ||
+						Number(form.footySailNumber) < 1 ||
+						Number(form.footySailNumber) > 999,
+					'Footy číslo na plachtě musí být celé číslo 1 až 999.',
+					bucket
+				);
+			}
+			addError(!hasBoat, 'Vyberte alespoň jednu loď: NSS, RG650 nebo Footy.', bucket);
 		}
 
 		if (currentStep === 4) {
