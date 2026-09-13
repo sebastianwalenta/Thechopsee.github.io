@@ -133,7 +133,7 @@ export const historyData = [
 	},
 	{
 		year: 2020,
-		results: { type: 'download' },
+		results: { type: 'download', url: '/vysledky/2020/2020comp.txt' },
 		articles: [
 			{
 				label: 'minisail.cz',
@@ -190,7 +190,7 @@ export const historyData = [
 	},
 	{
 		year: 2017,
-		results: { type: 'download' },
+		results: { type: 'download', url: '/vysledky/2017/2017comp.pdf' },
 		articles: [
 			{
 				label: 'modelyznojmo.webnode.cz',
@@ -254,7 +254,7 @@ export const historyData = [
 	},
 	{
 		year: 2013,
-		results: { type: 'download' },
+		results: { type: 'new', url: '/vysledky/2013/' },
 		articles: [
 			{
 				label: 'minisail.cz',
@@ -270,7 +270,7 @@ export const historyData = [
 	},
 	{
 		year: 2012,
-		results: { type: 'download' },
+		results: { type: 'download', url: '/vysledky/2012/2012comp.pdf' },
 		articles: [
 			{ label: 'minisail.cz', url: 'https://www.minisail.cz/setkani/z-akci/id:2481/terlicko-2012' }
 		],
@@ -286,7 +286,7 @@ export const historyData = [
 	},
 	{
 		year: 2011,
-		results: { type: 'download' },
+		results: { type: 'download', url: '/vysledky/2011/2011comp.pdf' },
 		articles: [
 			{
 				label: 'minisail.cz',

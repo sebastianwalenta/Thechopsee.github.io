@@ -42,6 +42,19 @@
 	}
 
 	/**
+	 * Odvodí název stahovaného souboru ze skutečné přípony URL,
+	 * aby se PDF nestahovalo jako .xlsx apod.
+	 * @param {string} url
+	 * @param {number} year
+	 */
+	function downloadName(url, year) {
+		const clean = url.split(/[?#]/)[0];
+		const fileName = clean.split('/').pop() || '';
+		const ext = fileName.includes('.') ? fileName.split('.').pop() : '';
+		return ext ? `vysledky-${year}.${ext}` : `vysledky-${year}`;
+	}
+
+	/**
 	 * @param {string} src
 	 */
 	function openModal(src) {
@@ -151,7 +164,7 @@
 					{#if data.results.type === 'download' && data.results.url}
 						<a
 							href={resolveUrl(data.results.url)}
-							download={`vysledky-${data.year}.xlsx`}
+							download={downloadName(data.results.url, data.year)}
 							class="action-btn link-btn results-btn"
 						>
 							Výsledky ⬇
