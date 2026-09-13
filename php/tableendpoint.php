@@ -109,12 +109,14 @@ if ($result && $result->num_rows > 0) {
             $nazevModelu = $row['nazev'];
         }
 
-        $footy = '-';
+        $footy = false;
         if (array_key_exists('footy_plachta', $row) && !empty(trim((string) ($row['footy_plachta'] ?? '')))) {
-            $footy = 'Ano';
-            $pocet_footy++;
-        } elseif (array_key_exists('footy', $row) && !empty($row['footy']) && $row['footy'] != '-') {
-            $footy = $row['footy'];
+            $footy = true;
+        } elseif (array_key_exists('footy', $row) && !empty($row['footy']) && $row['footy'] != '-' && $row['footy'] != 'Ne') {
+            $footy = true;
+        }
+
+        if ($footy) {
             $pocet_footy++;
         }
 
@@ -135,7 +137,8 @@ if ($result && $result->num_rows > 0) {
             'pocet_osob' => (int) ($row['pocet_osob'] ?? 0),
             'rg_plachta' => $row['rg_plachta'] ?? '',
             'footy_plachta' => $row['footy_plachta'] ?? '',
-            'footy' => $footy
+            'footy' => $footy,
+            'footy_text' => $footy ? 'Ano' : 'Ne'
         ];
     }
 }

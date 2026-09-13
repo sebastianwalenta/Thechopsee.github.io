@@ -95,8 +95,8 @@
 					age: zavodnik.vek,
 					country: zavodnik.stat,
 					nss: zavodnik.kategorie !== '-' ? `${zavodnik.kategorie} / ${zavodnik.nazev_modelu}` : '-',
-					rg: zavodnik.rg_text ?? (zavodnik.rg ? 'Ano' : '-'),
-					footy: zavodnik.footy ?? '-'
+					rg: zavodnik.rg_text ?? (zavodnik.rg ? 'Ano' : 'Ne'),
+					footy: zavodnik.footy_text ?? (zavodnik.footy === 'Ano' || zavodnik.footy === true ? 'Ano' : 'Ne')
 				}));
 			} else {
 				console.error('Failed to fetch registrants:', response.status);
@@ -265,8 +265,8 @@
 			age: form.ageGroup === '17-' ? 'J' : 'S',
 			country: countryCode || '---',
 			nss: form.attendsNss ? `${form.nssCategory} / ${form.nssBoatName.trim()}` : '-',
-			rg: form.attendsRg ? (form.rgSailNumber ? String(form.rgSailNumber) : 'ano') : '-',
-			footy: form.attendsFooty ? (form.footySailNumber ? String(form.footySailNumber) : 'ano') : '-'
+			rg: form.attendsRg ? 'Ano' : 'Ne',
+			footy: form.attendsFooty ? 'Ano' : 'Ne'
 		};
 	}
 
