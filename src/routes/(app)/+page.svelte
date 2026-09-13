@@ -319,6 +319,7 @@
 	}
 
 	.provider-btn {
+		box-sizing: border-box;
 		flex: 1;
 		min-width: 160px;
 		max-width: 240px;
@@ -369,6 +370,10 @@
 	}
 
 	@media (max-width: 800px) {
+		.info-card {
+			padding: 24px 16px;
+		}
+
 		#propozice {
 			grid-template-columns: 1fr;
 		}
@@ -380,6 +385,8 @@
 		.map-buttons {
 			flex-direction: column;
 			align-items: center;
+			width: 100%;
+			box-sizing: border-box;
 		}
 
 		.provider-btn {
