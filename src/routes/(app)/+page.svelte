@@ -22,7 +22,7 @@
 	<section class="hero">
 		<div class="hero-copy">
 			<h1>Těrlická plachta 2027</h1>
-			<p class="lead">Kdy: 1.–3. 10. 2026 • RS Vyhlídka Těrlicko</p>
+			<p class="lead">Kdy: 1.–3. 10. 2027 • RS Vyhlídka Těrlicko</p>
 			<p class="lead">Kde: RS Vyhlídka Těrlicko</p>
 			<p class="lead">
 				Co: Setkání plachetnic třídy NSS - A, B, C, RG-650 a další typy plachetnic bez strojního pohonu

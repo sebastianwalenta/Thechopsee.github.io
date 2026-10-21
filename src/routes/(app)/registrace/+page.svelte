@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { assets } from '$app/paths';
 
-	const registrationDeadline = new Date(2026, 8, 22, 23, 59, 59);
+	const registrationDeadline = new Date(2027, 8, 22, 23, 59, 59);
 	const steps = [
 		'Závodník',
 		'NSS',
@@ -381,9 +381,9 @@
 					<span>sekundy</span>
 				</div>
 			</div>
-			<p class="countdown-note">
+			<!-- <p class="countdown-note">
 				Uzávěrka je nastavena na 22. 9. 2026, po jejím uplynutí se formulář automaticky zamkne.
-			</p>
+			</p> -->
 		</div>
 	</section>
 
@@ -730,14 +730,14 @@
 					Zpět
 				</button>
 
-				{#if step < steps.length - 1}
+				{#if step < steps.length - 1 && false}
 					<button class="primary" disabled={registrationClosed} type="button" onclick={nextStep}>
 						Pokračovat
 					</button>
 				{:else}
-					<button class="primary" disabled={registrationClosed || submitting} type="button" onclick={submitForm}>
+					<!-- <button class="primary" disabled={registrationClosed || submitting} type="button" onclick={submitForm}>
 						{submitting ? 'Odesílám...' : 'Odeslat registraci'}
-					</button>
+					</button> -->
 				{/if}
 			</div>
 		</section>
