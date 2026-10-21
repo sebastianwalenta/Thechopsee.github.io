@@ -12,6 +12,16 @@
 /** @type {HistoryEntry[]} */
 export const historyData = [
 	{
+		year: 2026,
+		results: { type: 'new', url: '/vysledky/2026/' },
+		articles: [
+			{ label: 'Minisail.cz', url: 'https://www.minisail.cz/setkani/z-akci/id:22477/terlicka-plachta-2026' }
+		],
+		gallery: [
+			{ label: 'Rajče-ferodedek', url: 'https://www.rajce.idnes.cz/album/B4YXEGQ6ttm37N44?' },
+		]
+	},
+	{
 		year: 2025,
 		results: { type: 'new', url: '/vysledky/2025/' },
 		articles: [

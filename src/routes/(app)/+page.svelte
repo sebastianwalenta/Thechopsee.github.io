@@ -15,14 +15,14 @@
 </script>
 
 <svelte:head>
-	<title>Těrlická plachta 2026</title>
+	<title>Těrlická plachta 2027</title>
 </svelte:head>
 
 <div class="page-shell">
 	<section class="hero">
 		<div class="hero-copy">
-			<h1>Těrlická plachta 2026</h1>
-			<p class="lead">Kdy: 25.–27. 9. 2026 • RS Vyhlídka Těrlicko</p>
+			<h1>Těrlická plachta 2027</h1>
+			<p class="lead">Kdy: 1.–3. 10. 2026 • RS Vyhlídka Těrlicko</p>
 			<p class="lead">Kde: RS Vyhlídka Těrlicko</p>
 			<p class="lead">
 				Co: Setkání plachetnic třídy NSS - A, B, C, RG-650 a další typy plachetnic bez strojního pohonu
@@ -32,14 +32,14 @@
 
 	<div class="propozice-section info-card">
 		<h3 class="eyebrow-header">PROPOZICE</h3>
-		<p class="status">Poslední změna : 3.7.2026</p>
-		<a
+		<p class="status">Poslední změna : Nezveřejněno</p>
+		<!-- <a
 			href={assets + '/propozice/propozice.pdf'}
 			download
 			class="download-btn"
 		>
 			Stažení propozic (PDF)
-		</a>
+		</a> -->
 		<div id="propozice">
 			<button type="button" class="propozice-btn" onclick={() => openModal(assets + '/propozice/propozice1.png')}>
 				<img src={assets + '/propozice/propozice1.png'} alt="Propozice 1" class="myImg" />

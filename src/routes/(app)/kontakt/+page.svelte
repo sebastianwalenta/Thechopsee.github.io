@@ -68,7 +68,7 @@
 </script>
 
 <svelte:head>
-	<title>Těrlická plachta 2026 | Kontakt</title>
+	<title>Těrlická plachta 2027 | Kontakt</title>
 </svelte:head>
 
 <div class="page-shell">

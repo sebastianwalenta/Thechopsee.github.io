@@ -78,7 +78,7 @@
 <div class="page-shell">
 	<section class="hero">
 		<div class="hero-copy">
-			<p class="eyebrow">2011 - 2025</p>
+			<p class="eyebrow">2011 - 2026</p>
 			<h1>Historie</h1>
 			<p class="lead">Portské, buček, soudek rumu. A tak to všechno začalo...</p>
 		</div>

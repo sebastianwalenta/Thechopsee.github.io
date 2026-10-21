@@ -344,17 +344,17 @@
 </script>
 
 <svelte:head>
-	<title>Těrlická plachta 2026 | Registrace</title>
+	<title>Těrlická plachta 2027 | Registrace</title>
 	<meta
 		name="description"
-		content="Registrační formulář závodu Těrlická plachta 2026 pro kategorie NSS, RG650 a Footy."
+		content="Registrační formulář závodu Těrlická plachta 2027 pro kategorie NSS, RG650 a Footy."
 	/>
 </svelte:head>
 
 <div class="page-shell">
 	<section class="hero">
 		<div class="hero-copy">
-			<p class="eyebrow">Těrlická plachta 2026</p>
+			<p class="eyebrow">Těrlická plachta 2027</p>
 			<h1>Registrační formulář závodníků</h1>
 			<p class="lead">
 				Vyplňte údaje závodníka, zvolte lodní kategorie a na konci vše zkontrolujte před odesláním.

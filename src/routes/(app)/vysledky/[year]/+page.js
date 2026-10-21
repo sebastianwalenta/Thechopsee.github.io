@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 
-const validYears = ['2013', '2022', '2023', '2024', '2025'];
+const validYears = ['2013', '2022', '2023', '2024', '2025', '2026'];
 
 export function load({ params }) {
 	const { year } = params;

@@ -12,7 +12,7 @@
 
 <div id="menu_block">
 	<nav id="menu_web">
-		<a href={base + '/'} class:active={page.url.pathname === base + '/'}>Těrlická plachta 2026</a>
+		<a href={base + '/'} class:active={page.url.pathname === base + '/'}>Těrlická plachta 2027</a>
 		<span class="sep">|</span>
 		<a href={base + '/historie'} class:active={page.url.pathname.startsWith(base + '/historie')}>Historie</a>
 		<span class="sep">|</span>
@@ -21,7 +21,7 @@
 		<a href={base + '/kontakt'} class:active={page.url.pathname === base + '/kontakt'}>Kontakt</a>
 	</nav>
 	<nav id="menu_mob">
-		<a href={base + '/'} class:active={page.url.pathname === base + '/'}>Těrlická plachta 2026</a>
+		<a href={base + '/'} class:active={page.url.pathname === base + '/'}>Těrlická plachta 2027</a>
 		<a href={base + '/historie'} class:active={page.url.pathname.startsWith(base + '/historie')}>Historie</a>
 		<a href={base + '/registrace'} class:active={page.url.pathname === base + '/registrace'}>Registrace</a>
 		<a href={base + '/kontakt'} class:active={page.url.pathname === base + '/kontakt'}>Kontakt</a>
