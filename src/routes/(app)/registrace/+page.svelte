@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { assets } from '$app/paths';
 
+	const registrationStartDate = new Date(2027, 6, 1, 0, 0, 0);
 	const registrationDeadline = new Date(2027, 8, 22, 23, 59, 59);
 	const steps = [
 		'Závodník',
@@ -57,13 +58,20 @@
 	});
 	let countdown = $state(getCountdown());
 
+	const registrationNotStarted = $derived(countdown.notStarted);
 	const registrationClosed = $derived(countdown.closed);
+	const registrationDisabled = $derived(registrationNotStarted || registrationClosed);
+
 	const countryCode = $derived(
 		form.country === 'OTHER' ? form.customCountry.trim().toUpperCase() : form.country
 	);
 	const hasBoat = $derived(form.attendsNss || form.attendsRg || form.attendsFooty);
 	const countdownLabel = $derived(
-		registrationClosed ? 'Registrace byla ukončena' : 'Registrace končí za'
+		registrationNotStarted
+			? 'Registrace začíná za'
+			: registrationClosed
+				? 'Registrace byla ukončena'
+				: 'Registrace končí za'
 	);
 
 	onMount(() => {
@@ -107,17 +115,39 @@
 	}
 
 	function getCountdown() {
-		const diff = registrationDeadline.getTime() - Date.now();
+		const now = Date.now();
+		const startDiff = registrationStartDate.getTime() - now;
 
-		if (diff <= 0) {
-			return { days: 0, hours: 0, minutes: 0, seconds: 0, closed: true };
+		if (startDiff > 0) {
+			return {
+				days: Math.floor(startDiff / 86_400_000),
+				hours: Math.floor((startDiff / 3_600_000) % 24),
+				minutes: Math.floor((startDiff / 60_000) % 60),
+				seconds: Math.floor((startDiff / 1_000) % 60),
+				notStarted: true,
+				closed: false
+			};
+		}
+
+		const endDiff = registrationDeadline.getTime() - now;
+
+		if (endDiff <= 0) {
+			return {
+				days: 0,
+				hours: 0,
+				minutes: 0,
+				seconds: 0,
+				notStarted: false,
+				closed: true
+			};
 		}
 
 		return {
-			days: Math.floor(diff / 86_400_000),
-			hours: Math.floor((diff / 3_600_000) % 24),
-			minutes: Math.floor((diff / 60_000) % 60),
-			seconds: Math.floor((diff / 1_000) % 60),
+			days: Math.floor(endDiff / 86_400_000),
+			hours: Math.floor((endDiff / 3_600_000) % 24),
+			minutes: Math.floor((endDiff / 60_000) % 60),
+			seconds: Math.floor((endDiff / 1_000) % 60),
+			notStarted: false,
 			closed: false
 		};
 	}
@@ -141,6 +171,12 @@
 	function validateCurrentStep(currentStep = step) {
 		/** @type {string[]} */
 		const bucket = [];
+
+		if (registrationNotStarted) {
+			bucket.push('Registrace ještě nebyla spuštěna.');
+			errors = bucket;
+			return false;
+		}
 
 		if (registrationClosed) {
 			bucket.push('Registrace už byla ukončena.');
@@ -397,7 +433,19 @@
 			<button class="secondary" type="button" onclick={resetForm}>Vyplnit další registraci</button>
 		</section>
 	{:else}
-		<section class="form-card">
+		<section class="form-card" class:has-overlay={registrationNotStarted}>
+			{#if registrationNotStarted}
+				<div class="overlay">
+					<div class="overlay-card">
+						<div class="overlay-icon" aria-hidden="true">🔒</div>
+						<h2>Registrace ještě nebyla spuštěna</h2>
+						<p>
+							Spuštění online registrace je naplánováno na <strong>1. 7. 2027</strong>.
+						</p>
+					</div>
+				</div>
+			{/if}
+
 			<div class="stepper" aria-label="Postup formuláře">
 				{#each steps as label, index}
 					<button
@@ -434,7 +482,7 @@
 				</div>
 			{/if}
 
-			<div class="panel" class:disabled-panel={registrationClosed}>
+			<div class="panel" class:disabled-panel={registrationDisabled}>
 				{#if step === 0}
 					<div class="section-heading">
 						<h2>Údaje o závodníkovi</h2>
@@ -922,6 +970,52 @@
 
 	.form-card {
 		margin-bottom: 28px;
+	}
+
+	.form-card.has-overlay {
+		position: relative;
+	}
+
+	.overlay {
+		position: absolute;
+		inset: 0;
+		z-index: 10;
+		background: rgba(220, 226, 235, 0.88);
+		backdrop-filter: blur(5px);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 24px;
+		border-radius: 24px;
+	}
+
+	.overlay-card {
+		background: #ffffff;
+		border: 1px solid rgba(48, 59, 74, 0.15);
+		border-radius: 20px;
+		padding: 36px 28px;
+		max-width: 480px;
+		text-align: center;
+		box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+		color: #303b4a;
+	}
+
+	.overlay-icon {
+		font-size: 2.5rem;
+		margin-bottom: 12px;
+	}
+
+	.overlay-card h2 {
+		font-size: 1.5rem;
+		margin-bottom: 10px;
+		color: #303b4a;
+	}
+
+	.overlay-card p {
+		margin-bottom: 0;
+		font-size: 1.05rem;
+		line-height: 1.5;
+		color: rgba(48, 59, 74, 0.82);
 	}
 
 	.stepper {
