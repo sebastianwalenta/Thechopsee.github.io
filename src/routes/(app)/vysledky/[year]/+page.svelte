@@ -71,6 +71,9 @@
 						title="GPS trasy bojek Těrlická plachta 2026">
 					</iframe>
 				</div>
+				<div class="gps-link">
+					<a href="http://slezsko-apps.myftp.org:50503/cases/T%C4%9Brlick%C3%A1%20plachta%202026" class="download-btn" target="_blank" rel="noopener noreferrer">Otevřít GPS tracking na celou obrazovku</a>
+				</div>
 			</section>
 		{/if}
 
@@ -132,6 +135,11 @@
 		border-radius: 24px;
 		overflow: hidden;
 		box-shadow: 0 24px 70px rgba(0, 0, 0, 0.2);
+	}
+
+	.gps-link {
+		margin-top: 16px;
+		text-align: center;
 	}
 
 	.download-section {
