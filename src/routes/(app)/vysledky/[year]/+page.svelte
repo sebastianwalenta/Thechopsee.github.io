@@ -57,6 +57,23 @@
 			</div>
 		</section>
 
+		{#if year === '2026'}
+			<section>
+				<h2>GPS tracking – naměřené trasy bojek</h2>
+				<div class="gps-wrapper">
+					<iframe
+						src="http://slezsko-apps.myftp.org:50503/cases/T%C4%9Brlick%C3%A1%20plachta%202026"
+						width="100%"
+						height="600px"
+						style="border:0;"
+						allowfullscreen=""
+						loading="lazy"
+						title="GPS trasy bojek Těrlická plachta 2026">
+					</iframe>
+				</div>
+			</section>
+		{/if}
+
 		<div class="download-section">
 			<h3>Stažení kompletních výsledků</h3>
 			<div class="button-group">
@@ -102,6 +119,14 @@
 	}
 
 	.pdf-wrapper {
+		background: rgba(255, 255, 255, 0.96);
+		border: 1px solid rgba(69, 206, 206, 0.2);
+		border-radius: 24px;
+		overflow: hidden;
+		box-shadow: 0 24px 70px rgba(0, 0, 0, 0.2);
+	}
+
+	.gps-wrapper {
 		background: rgba(255, 255, 255, 0.96);
 		border: 1px solid rgba(69, 206, 206, 0.2);
 		border-radius: 24px;
